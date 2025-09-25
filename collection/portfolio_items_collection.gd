@@ -13,7 +13,7 @@ class PortfolioItem:
 	func _init(dict: Dictionary) -> void:
 		# Error handling
 		@warning_ignore("standalone_expression")
-		if ["id", "title", "subtitle", "tagIds", "description", "linkTexts"].any(func (it): not (it in dict)):
+		if ["id", "title", "subtitle", "tagIds", "description", "linkTexts"].any(func (it: String): not (it in dict)):
 			push_error("Conversion error")
 			LoadingScreen.has_error = true
 			return
@@ -41,7 +41,7 @@ var image_response_size: int
 # (Assigns the portfolio items, according to the response object)
 func assign(response: Array) -> void:
 	portfolio_items = []
-	portfolio_items.assign(response.map(func (dict): return PortfolioItem.new(dict)))
+	portfolio_items.assign(response.map(func (dict: Dictionary): return PortfolioItem.new(dict)))
 	
 	# TEMP: load temp images from disk maybe
 	var actually_load_images = true
@@ -66,7 +66,7 @@ func assign(response: Array) -> void:
 		add_child(http_request)
 		http_request.request_completed.connect(_http_request_completed.bind(i, image_url))
 
-		var error = http_request.request(image_url)
+		var error := http_request.request(image_url)
 		if error != OK:
 			LoadingScreen.has_error = true
 			push_error("HTTP error")

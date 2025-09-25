@@ -71,7 +71,7 @@ func request_portfolio_tags() -> void:
 	add_child(http_request)
 	http_request.request_completed.connect(_portfolio_tags_completed)
 
-	var error = http_request.request("https://www.thomassjerps.nl/api/jh-portfolio-tags?locale=" + locale)
+	var error := http_request.request("https://www.thomassjerps.nl/api/jh-portfolio-tags?locale=" + locale)
 	print("sent request to /api/jh-portfolio-tags/")
 	if error != OK:
 		push_error("HTTP error")

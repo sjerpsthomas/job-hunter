@@ -18,7 +18,7 @@ var link_texts: Array[String]
 var target_size := Vector2(800, 600)
 var target_tags_label_position := Vector2(24, 250)
 var target_links_label_position := Vector2(24, 494)
-var target_background_rect_alpha = 0.0
+var target_background_rect_alpha := 0.0
 
 
 # (Initializes the card's content)
@@ -34,7 +34,7 @@ func initialize(item: PortfolioItemsCollection.PortfolioItem) -> void:
 	expand()
 
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	# TODO: delta-independent tweening (talk by Freya Holmer)
 	
 	panel.size = panel.size.lerp(target_size, 0.1)
@@ -51,7 +51,7 @@ func collapse() -> void:
 	target_links_label_position = Vector2(24, 158)
 	target_background_rect_alpha = 1.0
 	
-	var link_count = link_texts.size()
+	var link_count := link_texts.size()
 	links_label.text = str(link_count, "  link", "" if link_count == 1 else "s")
 	
 	collapsed = true
