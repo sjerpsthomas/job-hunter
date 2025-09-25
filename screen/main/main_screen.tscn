@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://cirbq3q8fgsne"]
+
+[ext_resource type="Script" uid="uid://3ewaswpre1hq" path="res://screen/main/main_screen.gd" id="1_v4gif"]
+[ext_resource type="PackedScene" uid="uid://bot52q5i7r4so" path="res://core/card/card.tscn" id="2_81sca"]
+
+[node name="MainScreen" type="Node2D"]
+script = ExtResource("1_v4gif")
+
+[node name="Card" parent="." instance=ExtResource("2_81sca")]
+position = Vector2(400, 300)

@@ -1,0 +1,98 @@
+[gd_scene load_steps=4 format=3 uid="uid://bot52q5i7r4so"]
+
+[ext_resource type="Script" uid="uid://pxa5bulibf67" path="res://core/card/card.gd" id="1_1i75k"]
+[ext_resource type="Texture2D" uid="uid://d37c8bbqif736" path="res://foto.png" id="1_xil1y"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_knm3g"]
+bg_color = Color(0.133333, 0.133333, 0.133333, 1)
+
+[node name="Card" type="Panel"]
+texture_filter = 1
+clip_contents = true
+offset_right = 800.0
+offset_bottom = 600.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_knm3g")
+script = ExtResource("1_1i75k")
+
+[node name="Title" type="Label" parent="."]
+layout_mode = 0
+offset_left = 24.0
+offset_top = 24.0
+offset_right = 432.0
+offset_bottom = 76.0
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 0
+theme_override_constants/shadow_offset_y = 3
+theme_override_constants/shadow_outline_size = 0
+theme_override_font_sizes/font_size = 48
+text = "Groover Top 2-Jazzend"
+autowrap_mode = 1
+
+[node name="Subtitle" type="Label" parent="."]
+layout_mode = 0
+offset_left = 24.0
+offset_top = 81.0
+offset_right = 432.0
+offset_bottom = 256.0
+theme_override_colors/font_color = Color(0.791999, 0.791999, 0.791999, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 0
+theme_override_constants/shadow_offset_y = 3
+theme_override_constants/shadow_outline_size = 0
+theme_override_font_sizes/font_size = 32
+text = "Onderzoeksproject in Godot/C#, React/TypeScript/Next.js, Python"
+autowrap_mode = 3
+
+[node name="Image" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = 456.0
+offset_top = 24.0
+offset_right = 1256.0
+offset_bottom = 624.0
+scale = Vector2(0.4, 0.4)
+texture = ExtResource("1_xil1y")
+
+[node name="Tags" type="Label" parent="."]
+layout_mode = 0
+offset_left = 24.0
+offset_top = 280.0
+offset_right = 776.0
+offset_bottom = 306.0
+theme_override_colors/font_color = Color(0.727428, 0.727428, 0.727428, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 0
+theme_override_constants/shadow_offset_y = 2
+theme_override_constants/shadow_outline_size = 0
+theme_override_font_sizes/font_size = 32
+text = "programmeren   asdf   asdf   qwerrewe"
+autowrap_mode = 3
+
+[node name="Description" type="Label" parent="."]
+layout_mode = 0
+offset_left = 24.0
+offset_top = 317.0
+offset_right = 776.0
+offset_bottom = 530.0
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 0
+theme_override_constants/shadow_offset_y = 2
+theme_override_constants/shadow_outline_size = 0
+theme_override_font_sizes/font_size = 32
+text = "Het tweede deel van de minor bestond uit een grotere interactieve installatie, wederom in groepjes van 2. De casus: de Koninklijke Bibliotheek in Den Haag wil meer mensen van buiten betrekken. De oplossing: 'Nenzo' bestaat uit een oppervlak met kijkgaten, waar een bezoeker nieuwsverhalen kan zien. Deze verhalen komen (door middel van een motortje en lus touw, en luider-wordende 'ambient' muziek) steeds dichter bij de bezoeker. Ik was onder andere verantwoordelijk voor de motor-beweging en audio."
+autowrap_mode = 3
+
+[node name="Links" type="Label" parent="."]
+layout_mode = 0
+offset_left = 24.0
+offset_top = 182.0
+offset_right = 776.0
+offset_bottom = 264.0
+theme_override_colors/font_color = Color(0.140708, 0.563422, 0.790688, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 0
+theme_override_constants/shadow_offset_y = 2
+theme_override_constants/shadow_outline_size = 0
+theme_override_font_sizes/font_size = 32
+text = "Link 1   Link 2"
+vertical_alignment = 2
+autowrap_mode = 3

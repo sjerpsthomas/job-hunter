@@ -1,0 +1,33 @@
+; Engine configuration file.
+; It's best edited using the editor UI and not directly,
+; since the parameters that go here are not all obvious.
+;
+; Format:
+;   [section] ; section goes between []
+;   param=value ; assign values to parameters
+
+config_version=5
+
+[application]
+
+config/name="Job Hunter"
+run/main_scene="uid://brvkk1tc6hyc"
+config/features=PackedStringArray("4.4", "Forward Plus")
+config/icon="res://icon.svg"
+
+[autoload]
+
+PortfolioItemsCollection="*res://collection/portfolio_items_collection.gd"
+PortfolioTagsCollection="*res://collection/portfolio_tags_collection.gd"
+
+[display]
+
+window/size/viewport_width=800
+window/size/viewport_height=600
+
+[gui]
+
+theme/custom_font="uid://c2upejdewke5g"
+theme/default_font_antialiasing=0
+theme/default_font_hinting=0
+theme/default_font_subpixel_positioning=0
