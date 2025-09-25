@@ -12,7 +12,7 @@ config_version=5
 
 config/name="Job Hunter"
 run/main_scene="uid://brvkk1tc6hyc"
-config/features=PackedStringArray("4.4", "Forward Plus")
+config/features=PackedStringArray("4.5", "Forward Plus")
 config/icon="res://icon.svg"
 
 [autoload]
@@ -27,7 +27,7 @@ window/size/viewport_height=600
 
 [gui]
 
-theme/custom_font="uid://c2upejdewke5g"
 theme/default_font_antialiasing=0
 theme/default_font_hinting=0
 theme/default_font_subpixel_positioning=0
+theme/custom_font="uid://c2upejdewke5g"
