@@ -12,15 +12,14 @@ script = ExtResource("1_1i75k")
 [node name="Panel" type="Panel" parent="."]
 texture_filter = 1
 clip_contents = true
-offset_left = -400.0
-offset_top = -300.0
-offset_right = 400.0
-offset_bottom = 300.0
+offset_left = -228.0
+offset_top = -132.0
+offset_right = 228.0
+offset_bottom = 132.0
 pivot_offset = Vector2(400, 300)
 theme_override_styles/panel = SubResource("StyleBoxFlat_knm3g")
 
 [node name="Background" type="TextureRect" parent="Panel"]
-modulate = Color(1, 1, 1, 0)
 self_modulate = Color(0.333333, 0.333333, 0.333333, 0.203922)
 layout_mode = 0
 offset_left = -172.0
@@ -47,10 +46,10 @@ autowrap_mode = 1
 
 [node name="Subtitle" type="Label" parent="Panel"]
 layout_mode = 0
-offset_left = 24.0
-offset_top = 81.0
-offset_right = 432.0
-offset_bottom = 256.0
+offset_left = 26.0
+offset_top = 80.0
+offset_right = 434.0
+offset_bottom = 255.0
 theme_override_colors/font_color = Color(0.808999, 0.808998, 0.808998, 1)
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_constants/shadow_offset_x = 0
@@ -80,9 +79,9 @@ texture = ExtResource("1_xil1y")
 [node name="Tags" type="Label" parent="Panel"]
 layout_mode = 0
 offset_left = 24.0
-offset_top = 250.0
+offset_top = 146.0
 offset_right = 456.0
-offset_bottom = 306.0
+offset_bottom = 202.0
 theme_override_colors/font_color = Color(0.510602, 0.510601, 0.510601, 1)
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_constants/shadow_offset_x = 0
@@ -110,15 +109,17 @@ autowrap_mode = 3
 [node name="Links" type="Label" parent="Panel"]
 layout_mode = 0
 offset_left = 24.0
-offset_top = 494.0
+offset_top = 158.0
 offset_right = 776.0
-offset_bottom = 576.0
+offset_bottom = 240.0
 theme_override_colors/font_color = Color(0.140708, 0.563422, 0.790688, 1)
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_constants/shadow_offset_x = 0
 theme_override_constants/shadow_offset_y = 2
 theme_override_constants/shadow_outline_size = 0
 theme_override_font_sizes/font_size = 32
-text = "Link 1   Link 2"
+text = "0 links"
 vertical_alignment = 2
 autowrap_mode = 3
+
+[connection signal="gui_input" from="Panel" to="." method="_on_panel_gui_input"]

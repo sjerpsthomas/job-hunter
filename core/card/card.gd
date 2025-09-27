@@ -1,3 +1,4 @@
+class_name Card
 extends Node2D
 
 
@@ -12,6 +13,7 @@ extends Node2D
 
 
 var collapsed := false
+var picked := false
 
 var link_texts: Array[String]
 
@@ -19,6 +21,11 @@ var target_size := Vector2(800, 600)
 var target_tags_label_position := Vector2(24, 250)
 var target_links_label_position := Vector2(24, 494)
 var target_background_rect_alpha := 0.0
+
+var position_offset := Vector2()
+
+
+signal clicked
 
 
 # (Initializes the card's content)
@@ -31,14 +38,18 @@ func initialize(item: PortfolioItemsCollection.PortfolioItem) -> void:
 	description_label.text = item.description.replace("\n", " ").replace(" ", "  ").strip_edges()
 	
 	link_texts = item.link_texts
-	expand()
+	collapse()
 
 
 func _process(_delta: float) -> void:
 	# TODO: delta-independent tweening (talk by Freya Holmer)
 	
+	var target_position_offset := Vector2(0, -30 * int(picked and collapsed) - 200 * int(not collapsed))
+	
+	position_offset = position_offset.lerp(target_position_offset, 0.2)
+	
 	panel.size = panel.size.lerp(target_size, 0.1)
-	panel.position = -panel.size / 2
+	panel.position = -panel.size / 2 + position_offset
 	tags_label.position = tags_label.position.lerp(target_tags_label_position, 0.15)
 	links_label.position = links_label.position.lerp(target_links_label_position, 0.1)
 	background_rect.modulate.a = lerpf(background_rect.modulate.a, target_background_rect_alpha, 0.08)
@@ -66,3 +77,8 @@ func expand() -> void:
 	links_label.text = "    ".join(link_texts)
 	
 	collapsed = false
+
+
+func _on_panel_gui_input(event: InputEvent) -> void:
+	if event.is_action_pressed("click"):
+		clicked.emit(self)
