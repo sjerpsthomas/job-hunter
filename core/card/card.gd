@@ -12,6 +12,8 @@ extends Node2D
 @onready var links_label := $Panel/Links as Label
 
 
+var item: PortfolioItemsCollection.PortfolioItem
+
 var collapsed := false
 var picked := false
 
@@ -29,7 +31,9 @@ signal clicked
 
 
 # (Initializes the card's content)
-func initialize(item: PortfolioItemsCollection.PortfolioItem) -> void:
+func initialize(new_item: PortfolioItemsCollection.PortfolioItem) -> void:
+	item = new_item
+	
 	background_rect.texture = item.image
 	title_label.text = item.title
 	subtitle_label.text = item.subtitle
