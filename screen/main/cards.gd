@@ -4,20 +4,42 @@ var card_id := 0
 
 
 func _ready() -> void:
-	var size := PortfolioItemsCollection.portfolio_items.size()
-	
-	var count := 4
-	
-	for i in range(count):
-		var card := preload("res://core/card/card.tscn").instantiate() as Card
-		add_child(card)
-		
-		card.initialize(PortfolioItemsCollection.portfolio_items[randi_range(0, size - 1)])
-		
-		card.collapse()
-		card.position.x = 50 * i
+	for i in range(4):
+		add_random_card()
 	
 	set_card_id(0)
+
+
+func add_random_card() -> void:
+	var size := PortfolioItemsCollection.portfolio_items.size()
+	
+	var card := preload("res://core/card/card.tscn").instantiate() as Card
+	add_child(card)
+	
+	card.initialize(PortfolioItemsCollection.portfolio_items[randi_range(0, size - 1)])
+	
+	card.collapse()
+	card.position.x = 50 * (get_child_count() - 1)
+
+
+func discard_and_redraw() -> void:
+	# Free picked cards, reposition old cards
+	var i := 0
+	var picked_count := 0
+	
+	for card: Card in get_children():
+		if card.picked:
+			card.free()
+			picked_count += 1
+		else:
+			card.position.x = 50 * i
+			i += 1
+	
+	for j in range(picked_count):
+		add_random_card()
+	
+	set_card_id(0)
+
 
 # -
 func _process(_delta: float) -> void:
