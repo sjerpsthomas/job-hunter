@@ -48,10 +48,10 @@ func _process(_delta: float) -> void:
 	
 	position_offset = position_offset.lerp(target_position_offset, 0.2)
 	
-	panel.size = panel.size.lerp(target_size, 0.1)
+	panel.size = panel.size.lerp(target_size, 0.15)
 	panel.position = -panel.size / 2 + position_offset
-	tags_label.position = tags_label.position.lerp(target_tags_label_position, 0.15)
-	links_label.position = links_label.position.lerp(target_links_label_position, 0.1)
+	tags_label.position = tags_label.position.lerp(target_tags_label_position, 0.2)
+	links_label.position = links_label.position.lerp(target_links_label_position, 0.15)
 	background_rect.modulate.a = lerpf(background_rect.modulate.a, target_background_rect_alpha, 0.08)
 
 
@@ -82,3 +82,16 @@ func expand() -> void:
 func _on_panel_gui_input(event: InputEvent) -> void:
 	if event.is_action_pressed("click"):
 		clicked.emit(self)
+
+
+func set_border(enabled: bool) -> void:
+	var m := Color.BLACK
+	
+	if enabled:
+		m = Color.WHITE
+	elif picked:
+		m = Color.DARK_GOLDENROD
+	
+	m.a = 0.5
+	
+	$Panel/Outline.modulate = m
