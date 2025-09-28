@@ -26,7 +26,7 @@ func add_random_card() -> void:
 	
 	var card_item: PortfolioItemsCollection.PortfolioItem
 	
-	if randf() < 0.13 and not cards.is_empty():
+	if randf() < 0.15 and not cards.is_empty():
 		card_item = cards.pick_random().item
 	else:
 		card_item = PortfolioItemsCollection.portfolio_items[randi_range(0, size - 1)]

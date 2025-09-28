@@ -1,12 +1,12 @@
 extends Node
 
 
-const locale = "nl"
+const locale = "en"
 
 
 
 func txt(input: String) -> String:
-	if locale == "EN":
+	if locale == "en":
 		return {
 			'loading': 'loading portfolio...',
 			'error': 'Error loading portfolio.\nPlease refresh to try again.',
