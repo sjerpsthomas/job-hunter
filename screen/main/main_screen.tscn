@@ -17,12 +17,13 @@ offset_bottom = 900.0
 
 [node name="SubViewport" type="SubViewport" parent="SubViewportContainer"]
 transparent_bg = true
+handle_input_locally = false
 size = Vector2i(900, 900)
 render_target_update_mode = 4
 
 [node name="Cards" type="Node2D" parent="SubViewportContainer/SubViewport"]
 unique_name_in_owner = true
-position = Vector2(403, 508)
+position = Vector2(350, 700)
 script = ExtResource("2_81sca")
 
 [node name="CardSequenceTexts" type="Node2D" parent="."]

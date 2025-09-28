@@ -10,13 +10,15 @@ func _unhandled_input(event: InputEvent) -> void:
 		
 		execute_card_sequence(items)
 		
-		# TODO: remove picked cards (in Cards)
-		
 		get_viewport().set_input_as_handled()
 
 
 func execute_card_sequence(items: Array[PortfolioItemsCollection.PortfolioItem]) -> void:
-	## NUMBER OF CARDS SEQUENCE 
+	## COLLAPSE ALL
+	if %Cards.collapse_all():
+		await get_tree().create_timer(1).timeout
+	
+	## NUMBER OF CARDS SEQUENCE
 	var card_count := items.size()
 	print(str("Card count of ", card_count))
 	
