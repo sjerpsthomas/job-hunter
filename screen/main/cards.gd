@@ -15,7 +15,7 @@ func _ready() -> void:
 	@warning_ignore("integer_division")
 	set_card_id(CARD_COUNT / 2)
 	
-	position = Vector2(400 - 60 * card_id, 450)
+	position = Vector2(400 - 60 * card_id, 330)
 	
 	main_screen.select_count = 20
 	main_screen.discard_count = 5
@@ -62,7 +62,7 @@ func discard_and_redraw() -> void:
 
 # -
 func _process(_delta: float) -> void:
-	var res_pos := Vector2(400 - 60 * card_id, 400)
+	var res_pos := Vector2(400 - 60 * card_id, 380)
 	
 	position = position.lerp(res_pos, 0.25)
 

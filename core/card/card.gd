@@ -96,7 +96,7 @@ func set_border(enabled: bool) -> void:
 	var m := Color.BLACK
 	
 	if picked:
-		m = Color.DEEP_SKY_BLUE
+		m = Color.PURPLE
 	elif enabled:
 		m = Color.WHITE
 	

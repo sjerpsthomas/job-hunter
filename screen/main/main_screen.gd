@@ -44,7 +44,7 @@ func _unhandled_input(event: InputEvent) -> void:
 
 
 func _process(_delta: float) -> void:
-	position = Vector2(randf(), randf()) * shake
+	position = Vector2(0.5 - randf(), 0.5 - randf()) * shake
 	shake = lerpf(shake, 0, 0.1)
 
 
@@ -59,7 +59,7 @@ func execute_card_sequence(items: Array[PortfolioItemsCollection.PortfolioItem])
 	## NUMBER OF CARDS SEQUENCE
 	var card_count := items.size()
 	
-	spawn_text(str(card_count, " CARDS"))
+	spawn_text(str(card_count, " CARD", "S" if card_count != 1 else ""))
 	score += card_count
 	do_shake(2 * card_count)
 	
@@ -71,7 +71,7 @@ func execute_card_sequence(items: Array[PortfolioItemsCollection.PortfolioItem])
 	for item in items:
 		link_count += item.link_texts.size()
 	
-	spawn_text(str(link_count, " TOTAL LINKS"))
+	spawn_text(str(link_count, " TOTAL LINK", "S" if link_count != 1 else ""))
 	score += 5 * link_count
 	do_shake(3 * link_count)
 	

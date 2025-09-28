@@ -1,18 +1,47 @@
-[gd_scene load_steps=17 format=3 uid="uid://cirbq3q8fgsne"]
+[gd_scene load_steps=25 format=3 uid="uid://cirbq3q8fgsne"]
 
 [ext_resource type="Script" uid="uid://3ewaswpre1hq" path="res://screen/main/main_screen.gd" id="1_v4gif"]
 [ext_resource type="Script" uid="uid://dv8ab6xoiutvf" path="res://screen/main/cards.gd" id="2_81sca"]
+[ext_resource type="Shader" uid="uid://rx70e3lyh14r" path="res://screen/title/background_shader.gdshader" id="2_exliv"]
 [ext_resource type="Script" uid="uid://bdufrqf1geq4w" path="res://screen/main/score.gd" id="2_upu6u"]
 [ext_resource type="Script" uid="uid://cbtmkfy8dng1q" path="res://screen/main/ui.gd" id="4_6bavf"]
 [ext_resource type="Script" uid="uid://d2qwg02d5hy4c" path="res://screen/main/card_sequence_texts.gd" id="4_yjj13"]
 [ext_resource type="Script" uid="uid://64besbvc47hy" path="res://screen/main/game_over.gd" id="5_6bavf"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hk0ab"]
+content_margin_left = 0.0
+content_margin_top = 0.0
+content_margin_right = 0.0
+content_margin_bottom = 0.0
+bg_color = Color(0.103400014, 0.37835, 0.47, 1)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+corner_detail = 5
+
+[sub_resource type="Gradient" id="Gradient_akt4n"]
+colors = PackedColorArray(0.7099639, 0.70996416, 0.7099635, 1, 0.008420823, 0.008420827, 0.00842082, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_fhia6"]
+gradient = SubResource("Gradient_akt4n")
+fill_to = Vector2(1, 1)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_vhbti"]
+shader = ExtResource("2_exliv")
+shader_parameter/gradient = SubResource("GradientTexture2D_fhia6")
+shader_parameter/circle_color = Color(0, 0.4575, 0.61, 0.5529412)
+shader_parameter/circle_multiplier = 14.075
+shader_parameter/speed = 1.0
+shader_parameter/direction = Vector2(1, 1)
+shader_parameter/rotation = Transform2D(1, -1, 0.8, 1, 0, 0)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_16d4a"]
 content_margin_left = 4.0
 content_margin_top = 4.0
 content_margin_right = 4.0
 content_margin_bottom = 4.0
-bg_color = Color(0.25, 0.25, 0.25, 1)
+bg_color = Color(0.1932, 0.67829996, 0.84, 0.38039216)
 corner_detail = 1
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5nfce"]
@@ -21,6 +50,11 @@ content_margin_top = 4.0
 content_margin_right = 4.0
 content_margin_bottom = 4.0
 bg_color = Color(0.5, 0.125, 0.125, 1)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(0, 0, 0, 1)
 corner_detail = 1
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_yjj13"]
@@ -29,14 +63,41 @@ content_margin_top = 4.0
 content_margin_right = 4.0
 content_margin_bottom = 4.0
 bg_color = Color(0.75, 0.1875, 0.1875, 1)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(0, 0, 0, 1)
 corner_detail = 1
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6bavf"]
-content_margin_left = 4.0
-content_margin_top = 4.0
-content_margin_right = 4.0
-content_margin_bottom = 4.0
+content_margin_bottom = 10.0
 bg_color = Color(0.1508438, 0.1508438, 0.15084386, 1)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(0, 0, 0, 1)
+corner_detail = 1
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vhbti"]
+content_margin_bottom = 10.0
+bg_color = Color(0.24579084, 0.24579069, 0.24579072, 1)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(0, 0, 0, 1)
+corner_detail = 1
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8fl1u"]
+content_margin_bottom = 10.0
+bg_color = Color(0.24579084, 0.24579069, 0.24579072, 1)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(0, 0, 0, 1)
 corner_detail = 1
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_upu6u"]
@@ -45,6 +106,11 @@ content_margin_top = 4.0
 content_margin_right = 4.0
 content_margin_bottom = 4.0
 bg_color = Color(0.5, 0.45, 0.125, 1)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(0, 0, 0, 1)
 corner_detail = 1
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xma5k"]
@@ -53,6 +119,11 @@ content_margin_top = 4.0
 content_margin_right = 4.0
 content_margin_bottom = 4.0
 bg_color = Color(0.75, 0.67499995, 0.1875, 1)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(0, 0, 0, 1)
 corner_detail = 1
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_exliv"]
@@ -60,7 +131,12 @@ content_margin_left = 4.0
 content_margin_top = 4.0
 content_margin_right = 4.0
 content_margin_bottom = 4.0
-bg_color = Color(0.125, 0.31875, 0.5, 1)
+bg_color = Color(0.26250005, 0.125, 0.5, 1)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(0, 0, 0, 1)
 corner_detail = 1
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_j8d0k"]
@@ -68,7 +144,12 @@ content_margin_left = 4.0
 content_margin_top = 4.0
 content_margin_right = 4.0
 content_margin_bottom = 4.0
-bg_color = Color(0.1875, 0.47812498, 0.75, 1)
+bg_color = Color(0.39375007, 0.1875, 0.75, 1)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(0, 0, 0, 1)
 corner_detail = 1
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ntjjj"]
@@ -77,6 +158,11 @@ content_margin_top = 4.0
 content_margin_right = 4.0
 content_margin_bottom = 4.0
 bg_color = Color(0, 0.5, 0, 1)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(0, 0, 0, 1)
 corner_detail = 1
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1fvnn"]
@@ -85,18 +171,44 @@ content_margin_top = 4.0
 content_margin_right = 4.0
 content_margin_bottom = 4.0
 bg_color = Color(0, 0.75, 0, 1)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(0, 0, 0, 1)
+corner_detail = 1
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_akt4n"]
+content_margin_left = 4.0
+content_margin_top = 4.0
+content_margin_right = 4.0
+content_margin_bottom = 4.0
+bg_color = Color(0.1056, 0.2739, 0.33, 1)
 corner_detail = 1
 
 [node name="MainScreen" type="Node2D"]
 texture_filter = 1
 script = ExtResource("1_v4gif")
 
+[node name="Background" type="CanvasLayer" parent="."]
+layer = -100
+
+[node name="Panel2" type="Panel" parent="Background"]
+offset_right = 800.0
+offset_bottom = 800.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_hk0ab")
+
+[node name="Panel" type="Panel" parent="Background"]
+material = SubResource("ShaderMaterial_vhbti")
+offset_right = 800.0
+offset_bottom = 800.0
+
 [node name="Score" type="Label" parent="."]
 unique_name_in_owner = true
 texture_filter = 1
-offset_top = 20.0
+offset_top = 52.0
 offset_right = 800.0
-offset_bottom = 68.0
+offset_bottom = 100.0
 pivot_offset = Vector2(500, 50)
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_constants/shadow_offset_x = 0
@@ -116,11 +228,12 @@ script = ExtResource("2_81sca")
 [node name="CardSequenceTexts" type="Node2D" parent="."]
 unique_name_in_owner = true
 z_index = 10
-position = Vector2(400, 162)
+position = Vector2(400, 170)
 script = ExtResource("4_yjj13")
 
 [node name="UI" type="Panel" parent="."]
 unique_name_in_owner = true
+z_index = 100
 texture_filter = 1
 offset_top = 600.0
 offset_right = 800.0
@@ -155,10 +268,11 @@ focus_mode = 0
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 8
-theme_override_font_sizes/font_size = 32
+theme_override_font_sizes/font_size = 52
 theme_override_styles/normal = SubResource("StyleBoxFlat_6bavf")
+theme_override_styles/hover = SubResource("StyleBoxFlat_vhbti")
 action_mode = 0
-text = "<-"
+text = "←"
 
 [node name="RightButton" type="Button" parent="UI"]
 layout_mode = 0
@@ -170,10 +284,11 @@ focus_mode = 0
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 8
-theme_override_font_sizes/font_size = 32
+theme_override_font_sizes/font_size = 52
 theme_override_styles/normal = SubResource("StyleBoxFlat_6bavf")
+theme_override_styles/hover = SubResource("StyleBoxFlat_8fl1u")
 action_mode = 0
-text = "->"
+text = "→"
 
 [node name="InspectButton" type="Button" parent="UI"]
 layout_mode = 0
@@ -226,10 +341,10 @@ text = "START"
 
 [node name="GameOver" type="Panel" parent="."]
 offset_left = 100.0
-offset_top = -480.0
+offset_top = -648.0
 offset_right = 700.0
-offset_bottom = -80.0
-theme_override_styles/panel = SubResource("StyleBoxFlat_16d4a")
+offset_bottom = -248.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_akt4n")
 script = ExtResource("5_6bavf")
 
 [node name="Title" type="Label" parent="GameOver"]
