@@ -1,3 +1,4 @@
+class_name MainScreen
 extends Node2D
 
 
@@ -7,6 +8,14 @@ var score: int = 0:
 		%Score.text = str("SCORE  ", score)
 
 var shake: float
+
+enum State {
+	NORMAL,
+	EXECUTING,
+	GAME_OVER
+}
+
+var state := State.NORMAL
 
 var select_count: int:
 	set(new_select_count):
@@ -20,7 +29,7 @@ var discard_count: int:
 
 
 func _unhandled_input(event: InputEvent) -> void:
-	if event.is_action_pressed("ui_execute"):
+	if state == State.NORMAL and event.is_action_pressed("ui_execute"):
 		var items: Array[PortfolioItemsCollection.PortfolioItem] = []
 		for card: Card in %Cards.get_children():
 			if card.picked:
@@ -38,8 +47,11 @@ func _process(_delta: float) -> void:
 
 func execute_card_sequence(items: Array[PortfolioItemsCollection.PortfolioItem]) -> void:
 	## PROLOG
+	state = State.EXECUTING
+	
 	if %Cards.collapse_all():
 		await get_tree().create_timer(1).timeout
+	
 	
 	## NUMBER OF CARDS SEQUENCE
 	var card_count := items.size()
@@ -117,10 +129,15 @@ func execute_card_sequence(items: Array[PortfolioItemsCollection.PortfolioItem])
 	
 	await get_tree().create_timer(0.5).timeout
 	
-	## EPILOG
-	%Cards.discard_and_redraw()
 	
-	await get_tree().create_timer(0.5).timeout
+	## EPILOG
+	if select_count == 0:
+		state = State.GAME_OVER
+	else:
+		state = State.NORMAL
+		%Cards.discard_and_redraw()
+		
+		await get_tree().create_timer(0.5).timeout
 
 
 func spawn_text(text_str: String) -> void:

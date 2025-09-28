@@ -3,7 +3,7 @@ extends Node2D
 var card_id := 0
 var cards: Array[Card]
 
-@onready var main_screen := get_parent()
+@onready var main_screen := get_parent() as MainScreen
 
 const CARD_COUNT := 5
 
@@ -80,10 +80,6 @@ func _unhandled_input(event: InputEvent) -> void:
 		reveal_card(cards[card_id])
 		get_viewport().set_input_as_handled()
 	
-	elif event.is_action_pressed("ui_card_shift"):
-		shift_card(card_id)
-		get_viewport().set_input_as_handled()
-	
 	elif event.is_action_pressed("ui_card_discard"):
 		discard_card(card_id)
 		get_viewport().set_input_as_handled()
@@ -127,6 +123,9 @@ func collapse_all(card_to_keep: Card = null) -> bool:
 
 
 func reveal_card(card: Card) -> void:
+	if main_screen.state != MainScreen.State.NORMAL:
+		return
+	
 	collapse_all(card)
 	
 	if card.collapsed:
@@ -136,8 +135,11 @@ func reveal_card(card: Card) -> void:
 
 
 func pick_card(card: Card) -> void:
-	if not card.collapsed:
+	if main_screen.state != MainScreen.State.NORMAL:
 		return
+	
+	if not card.collapsed:
+		card.collapse()
 	
 	if card.picked:
 		card.picked = false
@@ -148,15 +150,11 @@ func pick_card(card: Card) -> void:
 	
 	card.set_border(true)
 
-func shift_card(card_index: int) -> void:
-	var card := cards[card_index]
-	
-	cards.remove_at(card_index)
-	cards.push_front(card)
-	
-	set_card_id(card_id)
 
 func discard_card(card_index: int) -> void:
+	if main_screen.state != MainScreen.State.NORMAL:
+		return
+	
 	if main_screen.discard_count <= 0:
 		return
 	
