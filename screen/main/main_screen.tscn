@@ -4,9 +4,9 @@
 [ext_resource type="Script" uid="uid://dv8ab6xoiutvf" path="res://screen/main/cards.gd" id="2_81sca"]
 [ext_resource type="Shader" uid="uid://rx70e3lyh14r" path="res://screen/title/background_shader.gdshader" id="2_exliv"]
 [ext_resource type="Script" uid="uid://bdufrqf1geq4w" path="res://screen/main/score.gd" id="2_upu6u"]
-[ext_resource type="Script" uid="uid://cbtmkfy8dng1q" path="res://screen/main/ui.gd" id="4_6bavf"]
 [ext_resource type="Script" uid="uid://d2qwg02d5hy4c" path="res://screen/main/card_sequence_texts.gd" id="4_yjj13"]
 [ext_resource type="Script" uid="uid://64besbvc47hy" path="res://screen/main/game_over.gd" id="5_6bavf"]
+[ext_resource type="Script" uid="uid://cbtmkfy8dng1q" path="res://screen/main/ui.gd" id="7_ntjjj"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hk0ab"]
 content_margin_left = 0.0
@@ -233,7 +233,7 @@ script = ExtResource("2_81sca")
 [node name="CardSequenceTexts" type="Node2D" parent="."]
 unique_name_in_owner = true
 z_index = 10
-position = Vector2(400, 170)
+position = Vector2(400, 154)
 script = ExtResource("4_yjj13")
 
 [node name="UI" type="Panel" parent="."]
@@ -244,7 +244,7 @@ offset_top = 600.0
 offset_right = 800.0
 offset_bottom = 800.0
 theme_override_styles/panel = SubResource("StyleBoxFlat_16d4a")
-script = ExtResource("4_6bavf")
+script = ExtResource("7_ntjjj")
 
 [node name="DiscardButton" type="Button" parent="UI"]
 layout_mode = 0

@@ -49,11 +49,14 @@ func _process(_delta: float) -> void:
 
 
 func execute_card_sequence(items: Array[PortfolioItemsCollection.PortfolioItem]) -> void:
+	const SHORT := 1.0
+	const LONG := 1.0
+	
 	## PROLOG
 	state = State.EXECUTING
 	
 	if %Cards.collapse_all():
-		await get_tree().create_timer(1).timeout
+		await get_tree().create_timer(LONG).timeout
 	
 	
 	## NUMBER OF CARDS SEQUENCE
@@ -63,7 +66,7 @@ func execute_card_sequence(items: Array[PortfolioItemsCollection.PortfolioItem])
 	score += card_count
 	do_shake(2 * card_count)
 	
-	await get_tree().create_timer(1).timeout
+	await get_tree().create_timer(LONG).timeout
 	
 	
 	## LINK SEQUENCE
@@ -71,11 +74,11 @@ func execute_card_sequence(items: Array[PortfolioItemsCollection.PortfolioItem])
 	for item in items:
 		link_count += item.link_texts.size()
 	
-	spawn_text(str(link_count, " ", Locale.txt('links' if link_count != 1 else "")))
+	spawn_text(str(link_count, " ", Locale.txt('links' if link_count != 1 else 'link')))
 	score += 5 * link_count
 	do_shake(3 * link_count)
 	
-	await get_tree().create_timer(1).timeout
+	await get_tree().create_timer(LONG).timeout
 	
 	
 	## COMMON TAG SEQUENCE
@@ -92,15 +95,13 @@ func execute_card_sequence(items: Array[PortfolioItemsCollection.PortfolioItem])
 				common = false
 		
 		if common and tag_count >= 2:
-			spawn_text(str(tag_count, " ", Locale.txt('common_tags_1'), " '", tag.to_upper(), "'", Locale.txt('common_tags_2'), " (", common_tag_multiplier, ")"))
+			spawn_text(str(tag_count, " ", Locale.txt('common_tags_1'), " '", tag.to_upper(), "'", Locale.txt('common_tags_2'), " (x", common_tag_multiplier, ")"))
 			do_shake(3 * 5 * tag_count * common_tag_multiplier)
 			
 			score += 10 * tag_count * common_tag_multiplier
 			common_tag_multiplier += 1
 			
-			await get_tree().create_timer(0.5).timeout
-	
-	await get_tree().create_timer(0.5).timeout
+			await get_tree().create_timer(SHORT).timeout
 	
 	
 	## DUPLICATE SEQUENCE
@@ -125,12 +126,10 @@ func execute_card_sequence(items: Array[PortfolioItemsCollection.PortfolioItem])
 			score += 20 * duplicate_count * duplicate_multiplier
 			duplicate_multiplier += 1
 			
-			await get_tree().create_timer(0.5).timeout
+			await get_tree().create_timer(SHORT).timeout
 		
 		# Remove all duplicates
 		dup_items = dup_items.filter(func (it: PortfolioItemsCollection.PortfolioItem): return it.title != item.title)
-	
-	await get_tree().create_timer(0.5).timeout
 	
 	
 	## EPILOG
@@ -141,11 +140,12 @@ func execute_card_sequence(items: Array[PortfolioItemsCollection.PortfolioItem])
 		state = State.NORMAL
 		%Cards.discard_and_redraw()
 		
-		await get_tree().create_timer(0.5).timeout
+		await get_tree().create_timer(SHORT).timeout
 
 
 func spawn_text(text_str: String) -> void:
 	%CardSequenceTexts.spawn_text(text_str)
+	print(text_str)
 
 func do_shake(new_shake: float) -> void:
 	shake = new_shake

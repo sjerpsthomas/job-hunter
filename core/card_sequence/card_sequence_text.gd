@@ -1,17 +1,15 @@
-extends Label
+extends Node2D
 
-
-var velocity := -5.0
+var text: String:
+	set(new_text):
+		$Label.text = new_text
 
 
 func _ready() -> void:
-	rotation_degrees = randf_range(-5, 5)
+	$AnimationPlayer.play("animation")
+	$AnimationPlayer.animation_finished.connect(_on_animation_finished)
 
 
-func _process(delta: float) -> void:
-	velocity += delta * 30
-	
-	position.y += velocity
-	
-	if position.y > 1000:
-		queue_free()
+func _on_animation_finished(anim_name: String) -> void:
+	print(anim_name)
+	queue_free()

@@ -1,14 +1,125 @@
-[gd_scene load_steps=2 format=3 uid="uid://4oryos16xxta"]
+[gd_scene load_steps=5 format=3 uid="uid://4oryos16xxta"]
 
-[ext_resource type="Script" uid="uid://lhf76txp2kms" path="res://core/card_sequence/card_sequence_text.gd" id="1_7s1qj"]
+[ext_resource type="Script" uid="uid://cx768a4i0x4yc" path="res://core/card_sequence/card_sequence_text.gd" id="1_7s1qj"]
 
-[node name="CardSequenceText" type="Label"]
+[sub_resource type="Animation" id="Animation_qd60t"]
+resource_name = "animation"
+length = 1.2
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position:y")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(-30, -0.25, 0, 0.36666667, -0.29621506, -64, -0.36666667, -0.13204956, 0, 0),
+"times": PackedFloat32Array(0, 1.2)
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:scale:x")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(2, 2),
+"points": PackedFloat32Array(0.7, 0, 0, 0.033333335, 0.00010710955, 1, -0.01666667, 0, 0, 0),
+"times": PackedFloat32Array(0, 0.10000001)
+}
+tracks/2/type = "bezier"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:scale:y")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"handle_modes": PackedInt32Array(2, 2),
+"points": PackedFloat32Array(0.7, 0, 0, 0.033333335, 0.00010710955, 1, -0.01666667, 0, 0, 0),
+"times": PackedFloat32Array(0, 0.10000001)
+}
+tracks/3/type = "bezier"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath(".:modulate:a")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"handle_modes": PackedInt32Array(2, 0, 0, 0),
+"points": PackedFloat32Array(0, 0, 0, 0.083333336, 0.16666667, 1, -0.008348977, 0, 0.07498436, 0, 1, -0.008348977, 0, 0.07498436, 0, 0, -0.083333336, 0, 0, 0),
+"times": PackedFloat32Array(0, 0.06666667, 0.8666667, 1.0333333)
+}
+
+[sub_resource type="Animation" id="Animation_7s1qj"]
+length = 0.001
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position:y")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(-50, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:scale:x")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/2/type = "bezier"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:scale:y")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/3/type = "bezier"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath(".:modulate:a")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_7s1qj"]
+_data = {
+&"RESET": SubResource("Animation_7s1qj"),
+&"animation": SubResource("Animation_qd60t")
+}
+
+[node name="CardSequenceText" type="Node2D"]
+script = ExtResource("1_7s1qj")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+root_node = NodePath("../Label")
+libraries = {
+&"": SubResource("AnimationLibrary_7s1qj")
+}
+
+[node name="Label" type="Label" parent="."]
+modulate = Color(1, 1, 1, 0)
 texture_filter = 1
-offset_left = -500.0
+offset_left = -400.0
 offset_top = -50.0
-offset_right = 500.0
+offset_right = 400.0
 offset_bottom = 50.0
-pivot_offset = Vector2(500, 50)
+pivot_offset = Vector2(400, 50)
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_constants/shadow_offset_x = 0
 theme_override_constants/shadow_offset_y = 3
@@ -18,4 +129,3 @@ text = "(...)"
 horizontal_alignment = 1
 vertical_alignment = 1
 autowrap_mode = 1
-script = ExtResource("1_7s1qj")
