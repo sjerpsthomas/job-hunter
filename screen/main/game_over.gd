@@ -8,6 +8,12 @@ func _process(_delta: float) -> void:
 		position.y = lerpf(position.y, 130, 0.15)
 
 
+func init() -> void:
+	$ScoreLabel.text = str(Locale.txt('final_score'), ": ", main_screen.score)
+	$ReplayButton.text = Locale.txt('replay')
+	$BackButton.text = Locale.txt('back')
+
+
 func _on_replay_button_pressed() -> void:
 	get_tree().change_scene_to_file("res://screen/main/main_screen.tscn")
 

@@ -37,6 +37,11 @@ content_margin_top = 4.0
 content_margin_right = 4.0
 content_margin_bottom = 4.0
 bg_color = Color(0, 0.5, 0, 1)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(0, 0, 0, 1)
 corner_detail = 1
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_cn8bv"]
@@ -45,9 +50,15 @@ content_margin_top = 4.0
 content_margin_right = 4.0
 content_margin_bottom = 4.0
 bg_color = Color(0, 0.75, 0, 1)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(0, 0, 0, 1)
 corner_detail = 1
 
 [node name="TitleScreen" type="Node2D"]
+texture_filter = 1
 script = ExtResource("1_2je2x")
 
 [node name="Panel2" type="Panel" parent="."]
@@ -73,6 +84,23 @@ theme_override_constants/shadow_outline_size = 0
 theme_override_font_sizes/font_size = 64
 text = "TITLE"
 horizontal_alignment = 1
+autowrap_mode = 1
+
+[node name="Loading" type="Label" parent="."]
+unique_name_in_owner = true
+texture_filter = 1
+offset_top = 296.0
+offset_right = 800.0
+offset_bottom = 377.0
+pivot_offset = Vector2(500, 50)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 0
+theme_override_constants/shadow_offset_y = 3
+theme_override_constants/shadow_outline_size = 0
+theme_override_font_sizes/font_size = 48
+text = "loading content..."
+horizontal_alignment = 1
+vertical_alignment = 2
 autowrap_mode = 1
 
 [node name="PlayButton" type="Button" parent="."]

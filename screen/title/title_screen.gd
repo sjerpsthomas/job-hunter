@@ -7,6 +7,10 @@ func _ready() -> void:
 		_on_loader_finished()
 	else:
 		PortfolioLoader.finished.connect(_on_loader_finished)
+		PortfolioLoader.errored.connect(_on_loader_errored)
+	
+	%Loading.text = Locale.txt('loading')
+	%PlayButton.text = Locale.txt('play')
 
 
 func _on_play_button_pressed() -> void:
@@ -14,4 +18,8 @@ func _on_play_button_pressed() -> void:
 
 
 func _on_loader_finished() -> void:
+	%Loading.visible = false
 	%PlayButton.disabled = false
+
+func _on_loader_errored() -> void:
+	%Loading.text = Locale.txt('error')

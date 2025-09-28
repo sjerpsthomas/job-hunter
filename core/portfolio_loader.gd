@@ -3,7 +3,6 @@ extends Node2D
 
 
 static var has_error := false
-static var locale := "en"
 
 var collection_response_count := 0
 var collection_response_size: int
@@ -32,7 +31,6 @@ func finish() -> void:
 # -
 func _process(_delta: float) -> void:
 	if has_error:
-		print("error found!")
 		errored.emit()
 
 
@@ -42,7 +40,7 @@ func request_portfolio_items() -> void:
 	add_child(http_request)
 	http_request.request_completed.connect(_portfolio_items_completed)
 
-	var error = http_request.request("https://www.thomassjerps.nl/api/jh-portfolio-items?locale=" + locale)
+	var error = http_request.request("https://www.thomassjerps.nl/api/jh-portfolio-items?locale=" + Locale.locale)
 	print("sent request to /api/jh-portfolio-items/")
 	if error != OK:
 		push_error("HTTP error")
@@ -75,7 +73,7 @@ func request_portfolio_tags() -> void:
 	add_child(http_request)
 	http_request.request_completed.connect(_portfolio_tags_completed)
 
-	var error := http_request.request("https://www.thomassjerps.nl/api/jh-portfolio-tags?locale=" + locale)
+	var error := http_request.request("https://www.thomassjerps.nl/api/jh-portfolio-tags?locale=" + Locale.locale)
 	print("sent request to /api/jh-portfolio-tags/")
 	if error != OK:
 		push_error("HTTP error")

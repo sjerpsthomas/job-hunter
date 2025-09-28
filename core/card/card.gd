@@ -50,7 +50,7 @@ func initialize(new_item: PortfolioItemsCollection.PortfolioItem) -> void:
 func _process(_delta: float) -> void:
 	# TODO: delta-independent tweening (talk by Freya Holmer)
 	
-	var target_position_offset := Vector2(0, -30 * int(picked and collapsed) - 100 * int(not collapsed))
+	var target_position_offset := Vector2(0, -30 * int(picked and collapsed) - 80 * int(not collapsed))
 	
 	position_offset = position_offset.lerp(target_position_offset, 0.2)
 	

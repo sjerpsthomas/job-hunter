@@ -59,7 +59,7 @@ func execute_card_sequence(items: Array[PortfolioItemsCollection.PortfolioItem])
 	## NUMBER OF CARDS SEQUENCE
 	var card_count := items.size()
 	
-	spawn_text(str(card_count, " CARD", "S" if card_count != 1 else ""))
+	spawn_text(str(card_count, " ", Locale.txt('cards' if card_count != 1 else 'card')))
 	score += card_count
 	do_shake(2 * card_count)
 	
@@ -71,7 +71,7 @@ func execute_card_sequence(items: Array[PortfolioItemsCollection.PortfolioItem])
 	for item in items:
 		link_count += item.link_texts.size()
 	
-	spawn_text(str(link_count, " TOTAL LINK", "S" if link_count != 1 else ""))
+	spawn_text(str(link_count, " ", Locale.txt('links' if link_count != 1 else "")))
 	score += 5 * link_count
 	do_shake(3 * link_count)
 	
@@ -92,7 +92,7 @@ func execute_card_sequence(items: Array[PortfolioItemsCollection.PortfolioItem])
 				common = false
 		
 		if common and tag_count >= 2:
-			spawn_text(str(tag_count, " COMMON ", tag.to_upper(), " TAGS (x", common_tag_multiplier, ")"))
+			spawn_text(str(tag_count, " ", Locale.txt('common_tags_1'), " '", tag.to_upper(), "'", Locale.txt('common_tags_2'), " (", common_tag_multiplier, ")"))
 			do_shake(3 * 5 * tag_count * common_tag_multiplier)
 			
 			score += 10 * tag_count * common_tag_multiplier
@@ -119,7 +119,7 @@ func execute_card_sequence(items: Array[PortfolioItemsCollection.PortfolioItem])
 		
 		# Don't continue if no duplicates found
 		if duplicate_count >= 2:
-			spawn_text(str(duplicate_count, " DUPLICATE ", item.title.to_upper(), " (x", duplicate_multiplier, ")"))
+			spawn_text(str(duplicate_count, " ", Locale.txt('duplicate_1'), " '", item.title.to_upper(), "'", Locale.txt('duplicate_2'), " (x", duplicate_multiplier, ")"))
 			do_shake(5 * 5 * duplicate_count * duplicate_multiplier)
 			
 			score += 20 * duplicate_count * duplicate_multiplier
@@ -136,6 +136,7 @@ func execute_card_sequence(items: Array[PortfolioItemsCollection.PortfolioItem])
 	## EPILOG
 	if select_count == 0:
 		state = State.GAME_OVER
+		%GameOver.init()
 	else:
 		state = State.NORMAL
 		%Cards.discard_and_redraw()

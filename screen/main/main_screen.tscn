@@ -184,6 +184,11 @@ content_margin_top = 4.0
 content_margin_right = 4.0
 content_margin_bottom = 4.0
 bg_color = Color(0.1056, 0.2739, 0.33, 1)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(0, 0, 0, 1)
 corner_detail = 1
 
 [node name="MainScreen" type="Node2D"]
@@ -255,8 +260,8 @@ theme_override_font_sizes/font_size = 32
 theme_override_styles/normal = SubResource("StyleBoxFlat_5nfce")
 theme_override_styles/hover = SubResource("StyleBoxFlat_yjj13")
 action_mode = 0
-text = "DISCARD
-(x left)"
+text = "...
+(...)"
 
 [node name="LeftButton" type="Button" parent="UI"]
 layout_mode = 0
@@ -304,7 +309,7 @@ theme_override_font_sizes/font_size = 32
 theme_override_styles/normal = SubResource("StyleBoxFlat_upu6u")
 theme_override_styles/hover = SubResource("StyleBoxFlat_xma5k")
 action_mode = 0
-text = "INSPECT"
+text = "(...)"
 
 [node name="SelectButton" type="Button" parent="UI"]
 layout_mode = 0
@@ -320,8 +325,8 @@ theme_override_font_sizes/font_size = 32
 theme_override_styles/normal = SubResource("StyleBoxFlat_exliv")
 theme_override_styles/hover = SubResource("StyleBoxFlat_j8d0k")
 action_mode = 0
-text = "SELECT
-(x left)"
+text = "...
+(...)"
 
 [node name="StartButton" type="Button" parent="UI"]
 layout_mode = 0
@@ -340,6 +345,7 @@ action_mode = 0
 text = "START"
 
 [node name="GameOver" type="Panel" parent="."]
+unique_name_in_owner = true
 offset_left = 100.0
 offset_top = -648.0
 offset_right = 700.0
