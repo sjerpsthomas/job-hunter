@@ -8,6 +8,12 @@ func press(action: String) -> void:
 	Input.parse_input_event(event)
 
 
+func set_discard_count(new_discard_count: int) -> void:
+	$DiscardButton.text = str("DISCARD\n(", new_discard_count, " left)")
+
+func set_select_count(new_select_count: int) -> void:
+	$SelectButton.text = str("SELECT\n(", new_select_count, " left)")
+
 func _on_discard_button_pressed() -> void:
 	press("ui_card_discard")
 

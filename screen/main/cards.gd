@@ -3,6 +3,8 @@ extends Node2D
 var card_id := 0
 var cards: Array[Card]
 
+@onready var main_screen := get_parent()
+
 const CARD_COUNT := 5
 
 
@@ -14,6 +16,9 @@ func _ready() -> void:
 	set_card_id(CARD_COUNT / 2)
 	
 	position = Vector2(400 - 60 * card_id, 450)
+	
+	main_screen.select_count = 20
+	main_screen.discard_count = 5
 
 
 func add_random_card() -> void:
@@ -136,8 +141,10 @@ func pick_card(card: Card) -> void:
 	
 	if card.picked:
 		card.picked = false
-	else:
+		main_screen.select_count += 1
+	elif main_screen.select_count > 0:
 		card.picked = true
+		main_screen.select_count -= 1
 	
 	card.set_border(true)
 
@@ -150,10 +157,15 @@ func shift_card(card_index: int) -> void:
 	set_card_id(card_id)
 
 func discard_card(card_index: int) -> void:
+	if main_screen.discard_count <= 0:
+		return
+	
 	var card := cards[card_index]
 	
 	card.queue_free()
 	cards.remove_at(card_index)
 	add_random_card()
+	
+	main_screen.discard_count -= 1
 	
 	set_card_id(card_id)

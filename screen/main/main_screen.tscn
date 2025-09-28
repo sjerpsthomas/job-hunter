@@ -116,6 +116,7 @@ position = Vector2(400, 162)
 script = ExtResource("4_yjj13")
 
 [node name="UI" type="Panel" parent="."]
+unique_name_in_owner = true
 texture_filter = 1
 offset_top = 600.0
 offset_right = 800.0
@@ -126,9 +127,9 @@ script = ExtResource("4_6bavf")
 [node name="DiscardButton" type="Button" parent="UI"]
 layout_mode = 0
 offset_left = 16.0
-offset_top = 56.0
+offset_top = 24.0
 offset_right = 188.0
-offset_bottom = 116.0
+offset_bottom = 108.0
 focus_mode = 0
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
@@ -137,7 +138,8 @@ theme_override_font_sizes/font_size = 32
 theme_override_styles/normal = SubResource("StyleBoxFlat_5nfce")
 theme_override_styles/hover = SubResource("StyleBoxFlat_yjj13")
 action_mode = 0
-text = "DISCARD"
+text = "DISCARD
+(x left)"
 
 [node name="LeftButton" type="Button" parent="UI"]
 layout_mode = 0
@@ -172,9 +174,9 @@ text = "->"
 [node name="InspectButton" type="Button" parent="UI"]
 layout_mode = 0
 offset_left = 612.0
-offset_top = 56.0
+offset_top = 24.0
 offset_right = 784.0
-offset_bottom = 116.0
+offset_bottom = 108.0
 focus_mode = 0
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
@@ -199,7 +201,8 @@ theme_override_font_sizes/font_size = 32
 theme_override_styles/normal = SubResource("StyleBoxFlat_exliv")
 theme_override_styles/hover = SubResource("StyleBoxFlat_j8d0k")
 action_mode = 0
-text = "SELECT"
+text = "SELECT
+(x left)"
 
 [node name="StartButton" type="Button" parent="UI"]
 layout_mode = 0

@@ -8,6 +8,16 @@ var score: int = 0:
 
 var shake: float
 
+var select_count: int:
+	set(new_select_count):
+		select_count = new_select_count
+		%UI.set_select_count(select_count)
+
+var discard_count: int:
+	set(new_discard_count):
+		discard_count = new_discard_count
+		%UI.set_discard_count(discard_count)
+
 
 func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed("ui_execute"):
