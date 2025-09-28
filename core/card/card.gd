@@ -26,6 +26,8 @@ var target_background_rect_alpha := 0.0
 
 var position_offset := Vector2()
 
+@onready var target_move_position := position
+
 
 signal clicked
 
@@ -51,6 +53,8 @@ func _process(_delta: float) -> void:
 	var target_position_offset := Vector2(0, -30 * int(picked and collapsed) - 200 * int(not collapsed))
 	
 	position_offset = position_offset.lerp(target_position_offset, 0.2)
+	
+	position = position.lerp(target_move_position, 0.2)
 	
 	panel.size = panel.size.lerp(target_size, 0.15)
 	panel.position = -panel.size / 2 + position_offset
