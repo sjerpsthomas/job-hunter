@@ -101,6 +101,9 @@ func set_card_id(new_card_id: int) -> void:
 	if main_screen.state == MainScreen.State.GAME_OVER:
 		return
 	
+	if card_id != new_card_id:
+		AudioManager.play_sfx('move')
+	
 	card_id = new_card_id
 	collapse_all()
 	
@@ -131,6 +134,8 @@ func reveal_card(card: Card) -> void:
 	
 	collapse_all(card)
 	
+	AudioManager.play_sfx('inspect')
+	
 	if card.collapsed:
 		card.expand()
 	else:
@@ -140,6 +145,8 @@ func reveal_card(card: Card) -> void:
 func pick_card(card: Card) -> void:
 	if main_screen.state != MainScreen.State.NORMAL:
 		return
+	
+	AudioManager.play_sfx('select')
 	
 	if not card.collapsed:
 		card.collapse()
@@ -160,6 +167,8 @@ func discard_card(card_index: int) -> void:
 	
 	if main_screen.discard_count <= 0:
 		return
+	
+	AudioManager.play_sfx('discard')
 	
 	var card := cards[card_index]
 	

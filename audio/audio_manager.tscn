@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://cwtmshyo2k215"]
+
+[ext_resource type="AudioStream" uid="uid://cxfhbcqyxfdw0" path="res://audio/msc_game.ogg" id="1_5jhky"]
+[ext_resource type="Script" uid="uid://47ban8m1v57t" path="res://audio/audio_manager.gd" id="1_drlug"]
+
+[node name="AudioManager" type="Node2D"]
+script = ExtResource("1_drlug")
+
+[node name="Music" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("1_5jhky")
+autoplay = true
+bus = &"Music"
+
+[node name="SFX" type="Node" parent="."]

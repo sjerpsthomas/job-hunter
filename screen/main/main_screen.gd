@@ -8,6 +8,7 @@ var score: int = 0:
 		%Score.text = str("SCORE  ", score)
 
 var shake: float
+var pitch: int
 
 enum State {
 	NORMAL,
@@ -53,6 +54,7 @@ func execute_card_sequence(items: Array[PortfolioItemsCollection.PortfolioItem])
 	const LONG := 1.0
 	
 	## PROLOG
+	pitch = 0
 	state = State.EXECUTING
 	
 	if %Cards.collapse_all():
@@ -145,6 +147,8 @@ func execute_card_sequence(items: Array[PortfolioItemsCollection.PortfolioItem])
 
 func spawn_text(text_str: String) -> void:
 	%CardSequenceTexts.spawn_text(text_str)
+	AudioManager.play_score(pitch)
+	pitch += 1
 	print(text_str)
 
 func do_shake(new_shake: float) -> void:

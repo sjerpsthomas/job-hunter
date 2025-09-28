@@ -1,0 +1,17 @@
+[gd_scene load_steps=2 format=3 uid="uid://p65miyewf1cf"]
+
+[sub_resource type="GDScript" id="GDScript_g7wwu"]
+script/source = "extends AudioStreamPlayer
+
+
+func start(path: String) -> void:
+	stream = load(path)
+	play()
+	finished.connect(_on_finished)
+
+func _on_finished() -> void:
+	queue_free()
+"
+
+[node name="AudioManagerSfx" type="AudioStreamPlayer"]
+script = SubResource("GDScript_g7wwu")
