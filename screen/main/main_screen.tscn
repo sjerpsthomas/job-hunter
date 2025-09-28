@@ -1,9 +1,11 @@
-[gd_scene load_steps=15 format=3 uid="uid://cirbq3q8fgsne"]
+[gd_scene load_steps=17 format=3 uid="uid://cirbq3q8fgsne"]
 
 [ext_resource type="Script" uid="uid://3ewaswpre1hq" path="res://screen/main/main_screen.gd" id="1_v4gif"]
 [ext_resource type="Script" uid="uid://dv8ab6xoiutvf" path="res://screen/main/cards.gd" id="2_81sca"]
+[ext_resource type="Script" uid="uid://bdufrqf1geq4w" path="res://screen/main/score.gd" id="2_upu6u"]
 [ext_resource type="Script" uid="uid://cbtmkfy8dng1q" path="res://screen/main/ui.gd" id="4_6bavf"]
 [ext_resource type="Script" uid="uid://d2qwg02d5hy4c" path="res://screen/main/card_sequence_texts.gd" id="4_yjj13"]
+[ext_resource type="Script" uid="uid://64besbvc47hy" path="res://screen/main/game_over.gd" id="5_6bavf"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_16d4a"]
 content_margin_left = 4.0
@@ -86,6 +88,7 @@ bg_color = Color(0, 0.75, 0, 1)
 corner_detail = 1
 
 [node name="MainScreen" type="Node2D"]
+texture_filter = 1
 script = ExtResource("1_v4gif")
 
 [node name="Score" type="Label" parent="."]
@@ -103,6 +106,7 @@ theme_override_font_sizes/font_size = 64
 text = "SCORE   0"
 horizontal_alignment = 1
 autowrap_mode = 1
+script = ExtResource("2_upu6u")
 
 [node name="Cards" type="Node2D" parent="."]
 unique_name_in_owner = true
@@ -220,9 +224,83 @@ theme_override_styles/hover = SubResource("StyleBoxFlat_1fvnn")
 action_mode = 0
 text = "START"
 
+[node name="GameOver" type="Panel" parent="."]
+offset_left = 100.0
+offset_top = -480.0
+offset_right = 700.0
+offset_bottom = -80.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_16d4a")
+script = ExtResource("5_6bavf")
+
+[node name="Title" type="Label" parent="GameOver"]
+texture_filter = 1
+layout_mode = 0
+offset_top = 37.0
+offset_right = 600.0
+offset_bottom = 85.0
+pivot_offset = Vector2(500, 50)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 0
+theme_override_constants/shadow_offset_y = 3
+theme_override_constants/shadow_outline_size = 0
+theme_override_font_sizes/font_size = 64
+text = "GAME OVER!"
+horizontal_alignment = 1
+autowrap_mode = 1
+
+[node name="ScoreLabel" type="Label" parent="GameOver"]
+texture_filter = 1
+layout_mode = 0
+offset_top = 100.0
+offset_right = 600.0
+offset_bottom = 147.0
+pivot_offset = Vector2(500, 50)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 0
+theme_override_constants/shadow_offset_y = 3
+theme_override_constants/shadow_outline_size = 0
+theme_override_font_sizes/font_size = 48
+text = "Final score: 0"
+horizontal_alignment = 1
+autowrap_mode = 1
+
+[node name="ReplayButton" type="Button" parent="GameOver"]
+layout_mode = 0
+offset_left = 150.0
+offset_top = 174.0
+offset_right = 450.0
+offset_bottom = 258.0
+focus_mode = 0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 8
+theme_override_font_sizes/font_size = 32
+theme_override_styles/normal = SubResource("StyleBoxFlat_ntjjj")
+theme_override_styles/hover = SubResource("StyleBoxFlat_1fvnn")
+action_mode = 0
+text = "Play again!"
+
+[node name="BackButton" type="Button" parent="GameOver"]
+layout_mode = 0
+offset_left = 150.0
+offset_top = 274.0
+offset_right = 450.0
+offset_bottom = 358.0
+focus_mode = 0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 8
+theme_override_font_sizes/font_size = 32
+theme_override_styles/normal = SubResource("StyleBoxFlat_5nfce")
+theme_override_styles/hover = SubResource("StyleBoxFlat_yjj13")
+action_mode = 0
+text = "Back to title screen"
+
 [connection signal="pressed" from="UI/DiscardButton" to="UI" method="_on_discard_button_pressed"]
 [connection signal="pressed" from="UI/LeftButton" to="UI" method="_on_left_button_pressed"]
 [connection signal="pressed" from="UI/RightButton" to="UI" method="_on_right_button_pressed"]
 [connection signal="pressed" from="UI/InspectButton" to="UI" method="_on_inspect_button_pressed"]
 [connection signal="pressed" from="UI/SelectButton" to="UI" method="_on_select_button_pressed"]
 [connection signal="pressed" from="UI/StartButton" to="UI" method="_on_start_button_pressed"]
+[connection signal="pressed" from="GameOver/ReplayButton" to="GameOver" method="_on_replay_button_pressed"]
+[connection signal="pressed" from="GameOver/BackButton" to="GameOver" method="_on_back_button_pressed"]

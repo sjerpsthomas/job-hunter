@@ -5,10 +5,11 @@ extends Node2D
 static var has_error := false
 static var locale := "en"
 
-@onready var item_name := $ItemName as Label
-
 var collection_response_count := 0
 var collection_response_size: int
+
+signal finished
+signal errored
 
 
 # -
@@ -22,14 +23,14 @@ func _ready():
 
 # (Finishes loading)
 func finish() -> void:
-	get_tree().change_scene_to_file("res://screen/main/main_screen.tscn")
+	finished.emit()
 
 
 # -
 func _process(_delta: float) -> void:
 	if has_error:
 		print("error found!")
-		#get_tree().quit()
+		errored.emit()
 
 
 # (Calls portfolio items HTTP request)
