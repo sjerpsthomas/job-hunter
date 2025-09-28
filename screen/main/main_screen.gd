@@ -42,7 +42,7 @@ func execute_card_sequence(items: Array[PortfolioItemsCollection.PortfolioItem])
 		if duplicate_count >= 2:
 			print(str("Duplicate count of ", duplicate_count, " for ", item.title))
 			
-			spawn_text(str(duplicate_count, " DUPLICATE ", item.title.capitalize(), " CARD BONUS!"))
+			spawn_text(str(duplicate_count, " DUPLICATE ", item.title.to_upper(), " CARD BONUS!"))
 			await get_tree().create_timer(0.5).timeout
 			pass
 		
@@ -79,7 +79,7 @@ func execute_card_sequence(items: Array[PortfolioItemsCollection.PortfolioItem])
 		if tag_count >= 2:
 			print(str("Duplicate tag of ", tag_count, " for ", tag))
 			
-			spawn_text(str(tag_count, " DUPLICATE ", tag.capitalize(), " TAG BONUS!"))
+			spawn_text(str(tag_count, " DUPLICATE ", tag.to_upper(), " TAG BONUS!"))
 			await get_tree().create_timer(0.5).timeout
 	
 	await get_tree().create_timer(0.5).timeout
