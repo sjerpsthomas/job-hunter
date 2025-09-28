@@ -19,6 +19,7 @@ config/icon="res://icon.svg"
 
 PortfolioItemsCollection="*res://collection/portfolio_items_collection.gd"
 PortfolioTagsCollection="*res://collection/portfolio_tags_collection.gd"
+PortfolioLoader="*res://core/portfolio_loader.gd"
 
 [display]
 

@@ -1,7 +1,6 @@
-[gd_scene load_steps=5 format=3 uid="uid://bvqguhp58dqtb"]
+[gd_scene load_steps=4 format=3 uid="uid://bvqguhp58dqtb"]
 
 [ext_resource type="Script" uid="uid://cy21g8nchdwj4" path="res://screen/title/title_screen.gd" id="1_2je2x"]
-[ext_resource type="Script" uid="uid://d2e6o247nxgc8" path="res://screen/title/loader.gd" id="1_cn8bv"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_77upk"]
 content_margin_left = 4.0
@@ -21,9 +20,6 @@ corner_detail = 1
 
 [node name="TitleScreen" type="Node2D"]
 script = ExtResource("1_2je2x")
-
-[node name="Loader" type="Node2D" parent="."]
-script = ExtResource("1_cn8bv")
 
 [node name="Title" type="Label" parent="."]
 texture_filter = 1
@@ -57,5 +53,4 @@ disabled = true
 action_mode = 0
 text = "Play!"
 
-[connection signal="finished" from="Loader" to="." method="_on_loader_finished"]
 [connection signal="pressed" from="PlayButton" to="." method="_on_play_button_pressed"]

@@ -26,7 +26,7 @@ func add_random_card() -> void:
 	
 	var card_item: PortfolioItemsCollection.PortfolioItem
 	
-	if randf() < 0.1 and not cards.is_empty():
+	if randf() < 0.13 and not cards.is_empty():
 		card_item = cards.pick_random().item
 	else:
 		card_item = PortfolioItemsCollection.portfolio_items[randi_range(0, size - 1)]
@@ -98,6 +98,9 @@ func _on_card_clicked(card: Card) -> void:
 
 
 func set_card_id(new_card_id: int) -> void:
+	if main_screen.state == MainScreen.State.GAME_OVER:
+		return
+	
 	card_id = new_card_id
 	collapse_all()
 	

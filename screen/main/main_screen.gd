@@ -35,7 +35,10 @@ func _unhandled_input(event: InputEvent) -> void:
 			if card.picked:
 				items.append(card.item)
 		
-		execute_card_sequence(items)
+		if items.is_empty():
+			pass
+		else:
+			execute_card_sequence(items)
 		
 		get_viewport().set_input_as_handled()
 
@@ -69,7 +72,7 @@ func execute_card_sequence(items: Array[PortfolioItemsCollection.PortfolioItem])
 		link_count += item.link_texts.size()
 	
 	spawn_text(str(link_count, " TOTAL LINKS"))
-	score += 2 * link_count
+	score += 5 * link_count
 	do_shake(3 * link_count)
 	
 	await get_tree().create_timer(1).timeout
@@ -92,7 +95,7 @@ func execute_card_sequence(items: Array[PortfolioItemsCollection.PortfolioItem])
 			spawn_text(str(tag_count, " COMMON ", tag.to_upper(), " TAGS (x", common_tag_multiplier, ")"))
 			do_shake(3 * 5 * tag_count * common_tag_multiplier)
 			
-			score += 5 * tag_count * common_tag_multiplier
+			score += 10 * tag_count * common_tag_multiplier
 			common_tag_multiplier += 1
 			
 			await get_tree().create_timer(0.5).timeout
@@ -119,7 +122,7 @@ func execute_card_sequence(items: Array[PortfolioItemsCollection.PortfolioItem])
 			spawn_text(str(duplicate_count, " DUPLICATE ", item.title.to_upper(), " (x", duplicate_multiplier, ")"))
 			do_shake(5 * 5 * duplicate_count * duplicate_multiplier)
 			
-			score += 10 * duplicate_count * duplicate_multiplier
+			score += 20 * duplicate_count * duplicate_multiplier
 			duplicate_multiplier += 1
 			
 			await get_tree().create_timer(0.5).timeout

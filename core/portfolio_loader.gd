@@ -8,6 +8,8 @@ static var locale := "en"
 var collection_response_count := 0
 var collection_response_size: int
 
+var is_finished := false
+
 signal finished
 signal errored
 
@@ -23,6 +25,7 @@ func _ready():
 
 # (Finishes loading)
 func finish() -> void:
+	is_finished = true
 	finished.emit()
 
 
