@@ -26,6 +26,7 @@ offset_top = -132.0
 offset_right = 228.0
 offset_bottom = 132.0
 pivot_offset = Vector2(400, 300)
+mouse_default_cursor_shape = 5
 theme_override_styles/panel = SubResource("StyleBoxFlat_knm3g")
 
 [node name="Background" type="TextureRect" parent="Panel"]

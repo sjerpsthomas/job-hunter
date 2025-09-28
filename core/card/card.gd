@@ -50,7 +50,7 @@ func initialize(new_item: PortfolioItemsCollection.PortfolioItem) -> void:
 func _process(_delta: float) -> void:
 	# TODO: delta-independent tweening (talk by Freya Holmer)
 	
-	var target_position_offset := Vector2(0, -30 * int(picked and collapsed) - 200 * int(not collapsed))
+	var target_position_offset := Vector2(0, -30 * int(picked and collapsed) - 100 * int(not collapsed))
 	
 	position_offset = position_offset.lerp(target_position_offset, 0.2)
 	
@@ -95,10 +95,10 @@ func _on_panel_gui_input(event: InputEvent) -> void:
 func set_border(enabled: bool) -> void:
 	var m := Color.BLACK
 	
-	if enabled:
+	if picked:
+		m = Color.DEEP_SKY_BLUE
+	elif enabled:
 		m = Color.WHITE
-	elif picked:
-		m = Color.DARK_GOLDENROD
 	
 	m.a = 0.5
 	

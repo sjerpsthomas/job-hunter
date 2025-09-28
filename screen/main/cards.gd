@@ -12,16 +12,30 @@ func _ready() -> void:
 	
 	@warning_ignore("integer_division")
 	set_card_id(CARD_COUNT / 2)
+	
+	position = Vector2(400 - 60 * card_id, 450)
 
 
 func add_random_card() -> void:
 	var size := PortfolioItemsCollection.portfolio_items.size()
 	
+	var card_item: PortfolioItemsCollection.PortfolioItem
+	
+	if randf() < 0.1 and not cards.is_empty():
+		card_item = cards.pick_random().item
+	else:
+		card_item = PortfolioItemsCollection.portfolio_items[randi_range(0, size - 1)]
+	
 	var card := preload("res://core/card/card.tscn").instantiate() as Card
 	cards.append(card)
 	add_child(card)
 	
-	card.initialize(PortfolioItemsCollection.portfolio_items[randi_range(0, size - 1)])
+	card.clicked.connect(_on_card_clicked)
+	
+	card.initialize(card_item)
+	
+	card.position.x = 60 * (cards.size() - 1)
+	card.position.y = 100
 	
 	card.collapse()
 
@@ -43,7 +57,7 @@ func discard_and_redraw() -> void:
 
 # -
 func _process(_delta: float) -> void:
-	var res_pos := Vector2(400 - 60 * card_id, 450)
+	var res_pos := Vector2(400 - 60 * card_id, 400)
 	
 	position = position.lerp(res_pos, 0.25)
 
@@ -65,9 +79,21 @@ func _unhandled_input(event: InputEvent) -> void:
 		shift_card(card_id)
 		get_viewport().set_input_as_handled()
 	
+	elif event.is_action_pressed("ui_card_discard"):
+		discard_card(card_id)
+		get_viewport().set_input_as_handled()
+	
 	elif event.is_action_pressed("ui_accept"):
 		pick_card(cards[card_id])
 		get_viewport().set_input_as_handled()
+
+
+func _on_card_clicked(card: Card) -> void:
+	print(card)
+	for i in range(cards):
+		if cards[i] == card:
+			set_card_id(i)
+			return
 
 
 func set_card_id(new_card_id: int) -> void:
@@ -112,11 +138,22 @@ func pick_card(card: Card) -> void:
 		card.picked = false
 	else:
 		card.picked = true
+	
+	card.set_border(true)
 
 func shift_card(card_index: int) -> void:
 	var card := cards[card_index]
 	
 	cards.remove_at(card_index)
 	cards.push_front(card)
+	
+	set_card_id(card_id)
+
+func discard_card(card_index: int) -> void:
+	var card := cards[card_index]
+	
+	card.queue_free()
+	cards.remove_at(card_index)
+	add_random_card()
 	
 	set_card_id(card_id)
