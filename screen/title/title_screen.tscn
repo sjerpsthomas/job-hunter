@@ -1,7 +1,9 @@
-[gd_scene load_steps=9 format=3 uid="uid://bvqguhp58dqtb"]
+[gd_scene load_steps=12 format=3 uid="uid://bvqguhp58dqtb"]
 
 [ext_resource type="Script" uid="uid://cy21g8nchdwj4" path="res://screen/title/title_screen.gd" id="1_2je2x"]
 [ext_resource type="Shader" uid="uid://rx70e3lyh14r" path="res://screen/title/background_shader.gdshader" id="2_2je2x"]
+[ext_resource type="Texture2D" uid="uid://bruav4dxr2glp" path="res://screen/title/title_en.png" id="3_qt4yu"]
+[ext_resource type="Texture2D" uid="uid://dhwy8sb7jxab5" path="res://screen/title/title_nl.png" id="4_tnlk3"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2je2x"]
 content_margin_left = 0.0
@@ -30,6 +32,20 @@ shader_parameter/circle_multiplier = 14.075
 shader_parameter/speed = 0.5
 shader_parameter/direction = Vector2(1, 1)
 shader_parameter/rotation = Transform2D(1, -1, 1, 1, 0, 0)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_72mm0"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_qt4yu")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_tnlk3")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_77upk"]
 content_margin_left = 4.0
@@ -61,54 +77,49 @@ corner_detail = 1
 texture_filter = 1
 script = ExtResource("1_2je2x")
 
-[node name="Panel2" type="Panel" parent="."]
+[node name="Background" type="CanvasLayer" parent="."]
+layer = -100
+
+[node name="Panel2" type="Panel" parent="Background"]
 offset_right = 800.0
 offset_bottom = 800.0
 theme_override_styles/panel = SubResource("StyleBoxFlat_2je2x")
 
-[node name="Panel" type="Panel" parent="."]
+[node name="Panel" type="Panel" parent="Background"]
 material = SubResource("ShaderMaterial_fhia6")
 offset_right = 800.0
 offset_bottom = 800.0
 
-[node name="Title" type="Label" parent="."]
+[node name="Title" type="AnimatedSprite2D" parent="."]
+unique_name_in_owner = true
+position = Vector2(400, 264)
+scale = Vector2(2, 2)
+sprite_frames = SubResource("SpriteFrames_72mm0")
+frame = 1
+
+[node name="Title2" type="Label" parent="."]
+visible = false
 texture_filter = 1
-offset_top = 149.0
+offset_top = 261.0
 offset_right = 800.0
-offset_bottom = 197.0
+offset_bottom = 397.0
 pivot_offset = Vector2(500, 50)
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_constants/shadow_offset_x = 0
 theme_override_constants/shadow_offset_y = 3
 theme_override_constants/shadow_outline_size = 0
 theme_override_font_sizes/font_size = 64
-text = "TITLE"
+text = "Welcome to "
 horizontal_alignment = 1
-autowrap_mode = 1
-
-[node name="Loading" type="Label" parent="."]
-unique_name_in_owner = true
-texture_filter = 1
-offset_top = 296.0
-offset_right = 800.0
-offset_bottom = 377.0
-pivot_offset = Vector2(500, 50)
-theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
-theme_override_constants/shadow_offset_x = 0
-theme_override_constants/shadow_offset_y = 3
-theme_override_constants/shadow_outline_size = 0
-theme_override_font_sizes/font_size = 48
-text = "loading content..."
-horizontal_alignment = 1
-vertical_alignment = 2
 autowrap_mode = 1
 
 [node name="PlayButton" type="Button" parent="."]
 unique_name_in_owner = true
-offset_left = 250.0
-offset_top = 409.0
-offset_right = 550.0
-offset_bottom = 493.0
+offset_left = 100.0
+offset_top = 417.0
+offset_right = 400.0
+offset_bottom = 481.5
+scale = Vector2(2, 2)
 focus_mode = 0
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
@@ -116,7 +127,6 @@ theme_override_constants/outline_size = 8
 theme_override_font_sizes/font_size = 32
 theme_override_styles/normal = SubResource("StyleBoxFlat_77upk")
 theme_override_styles/hover = SubResource("StyleBoxFlat_cn8bv")
-disabled = true
 action_mode = 0
 text = "Play!"
 

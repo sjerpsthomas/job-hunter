@@ -1,25 +1,23 @@
 extends Node2D
 
 
+@onready var title := %Title as AnimatedSprite2D
+
+@onready var start_y = title.position.y
+var time := 0.0
+
 
 func _ready() -> void:
-	if PortfolioLoader.is_finished:
-		_on_loader_finished()
-	else:
-		PortfolioLoader.finished.connect(_on_loader_finished)
-		PortfolioLoader.errored.connect(_on_loader_errored)
+	title.frame = 1 if Locale.locale == 'nl' else 0
 	
-	%Loading.text = Locale.txt('loading')
 	%PlayButton.text = Locale.txt('play')
 
 
+func _process(delta: float) -> void:
+	time += delta
+	
+	title.position.y = start_y + 15 * sin(time * 2)
+
+
 func _on_play_button_pressed() -> void:
-	get_tree().change_scene_to_file("res://screen/main/main_screen.tscn")
-
-
-func _on_loader_finished() -> void:
-	%Loading.visible = false
-	%PlayButton.disabled = false
-
-func _on_loader_errored() -> void:
-	%Loading.text = Locale.txt('error')
+	get_tree().change_scene_to_file("res://screen/tutorial/tutorial_screen.tscn")

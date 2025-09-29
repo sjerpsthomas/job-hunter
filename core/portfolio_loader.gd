@@ -108,4 +108,4 @@ func _on_collection_finished() -> void:
 	
 	if collection_response_count == collection_response_size:
 		print("done!")
-		finish()
+		call_deferred("finish")
